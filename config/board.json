@@ -1,0 +1,25 @@
+{
+  "product": "ESP32-S31-Zero",
+  "hardware_revision": "V1.0",
+  "target": "esp32s31",
+  "source": "hardware/schematic/ESP32-S31-Zero-schematic.pdf",
+  "schematic_flash_part": "GD25Q256EYIGR",
+  "schematic_flash_bytes": 33554432,
+  "configured_flash_bytes": 16777216,
+  "psram_bytes": null,
+  "rgb_gpio": 60,
+  "button_gpio": 61,
+  "button_active_level": 0,
+  "usb_serial_jtag": {
+    "dm": 33,
+    "dp": 34
+  },
+  "i2c": {
+    "sda": 52,
+    "scl": 53,
+    "j2_sda_pin": 19,
+    "j2_scl_pin": 21,
+    "onboard_slave_address": null
+  },
+  "external_fixture_verified": false
+}

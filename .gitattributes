@@ -1,0 +1,5 @@
+# Preserve firmware and hardware assets as binary data.
+*.bin binary
+*.pdf binary
+*.PcbLib binary
+*.webp binary

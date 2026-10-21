@@ -1,93 +1,79 @@
-# ESP32 S31 Zero
+# Waveshare ESP32-S31-Zero
 
+[中文](README_ZH.md)
 
+ESP32-S31-Zero V1.0 is a compact development board built around ESP32-S31. The supplied schematic shows a WS2812B-1010 RGB LED, boot/reset keys, USB Type-C, external SPI Flash, RF connector and GPIO/LCD/touch/SD expansion connections. External display and touch modules are not established as onboard components.
+
+- [Hardware evidence and open questions](docs/hardware.md)
+- [Examples and build entry](docs/examples.md)
+- [Framework and dependency support](docs/versions.md)
+- [Firmware download and flashing](releases/README.md)
+
+<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S3-LR1121-OLED-1.54-XF" width="500">
+
+## Overview
+
+The repository preserves 12 existing ESP-IDF source projects, the supplied test binary, schematic and footprints. No product image from another board is used. The schematic's GD25Q256EYIGR is 32 MiB; existing projects retain a 16 MiB image/partition configuration. PSRAM capacity and the exact chip ordering suffix remain unconfirmed. GPIO60 drives the RGB LED and GPIO61 reads the active-low key. H1 USB Serial/JTAG uses GPIO33/34, also used by the existing external LCD fixture.
+
+## Framework support
+
+**The experimental CI matrix covers all 12 projects using ESP-IDF `6.2.0-dev-08e0d30a74ad`, pinned to commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.** This development framework and its ESP32-S31 preview target are explicitly approved for CI configuration. Official v6.1 is the latest stable 6.x release found in this audit, but ESP32-S31 remains a preview target; v5.5.6 does not include it and no stable v6.2 tag was found. See the [central configuration](config/frameworks.json). Configuring the matrix does not establish compilation success. No full firmware build or hardware test has been performed. No Arduino project is present.
+
+## Examples
+
+| ESP-IDF project | Purpose |
+| --- | --- |
+| [01_gpio_output](examples/esp-idf/01_gpio_output/) | GPIO output-high demonstration |
+| [02_blink_rgb](examples/esp-idf/02_blink_rgb/) | Onboard RGB LED |
+| [03_chip_info](examples/esp-idf/03_chip_info/) | Chip and physical Flash information |
+| [04_boot_button](examples/esp-idf/04_boot_button/) | Active-low boot button |
+| [05_uart_loopback](examples/esp-idf/05_uart_loopback/) | UART loopback with jumper |
+| [06_i2c_scan](examples/esp-idf/06_i2c_scan/) | External I²C bus scan |
+| [07_wifi_scan](examples/esp-idf/07_wifi_scan/) | Wi-Fi scan |
+| [08_wifi_sta](examples/esp-idf/08_wifi_sta/) | Wi-Fi station |
+| [09_wifi_ap](examples/esp-idf/09_wifi_ap/) | Wi-Fi SoftAP |
+| [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/) | BLE advertiser |
+| [11_board_test](examples/esp-idf/11_board_test/) | Existing external fixture test |
+| [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | Existing Wi-Fi throughput console |
+
+12 original projects, 0 newly added projects, 12 maintained projects. Naming changes and hardware requirements are listed in [the inventory](docs/examples.md). Examples 11 and 12 are preserved existing applications, not newly expanded scope. Example 11 needs external hardware and has unconfirmed PSRAM/display assumptions.
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Run discovery without building (Ubuntu Bash):
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin http://192.168.1.91/shiwei/esp32-s31-zero.git
-git branch -M main
-git push -uf origin main
+```bash
+python3 scripts/discover_examples.py all
+python3 scripts/validate_repo.py
+python3 -m unittest discover -s tests -v
 ```
 
-## Integrate with your tools
+Windows PowerShell:
 
-* [Set up project integrations](http://192.168.1.91/shiwei/esp32-s31-zero/-/settings/integrations)
+```powershell
+py -3 scripts/discover_examples.py all
+py -3 scripts/validate_repo.py
+py -3 -m unittest discover -s tests -v
+```
 
-## Collaborate with your team
+Use the pinned framework and [build entry](docs/examples.md). Successful source builds produce ZIPs with original binaries, a compact combined image, manifest, resolved dependencies, checksums and Bash/Windows helpers. The [standalone downloader](scripts/download_firmware.py) lists and verifies public Release firmware; it never flashes automatically. A GitHub release destination must be configured by the maintainer. The preserved [factory binary](firmware/README.md) is separate and has incomplete provenance.
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+## Repository layout
 
-## Test and Deploy
+| Path | Contents |
+| --- | --- |
+| `examples/esp-idf/` | 12 first-party source projects |
+| `hardware/` | Supplied schematic and footprints |
+| `config/` | Target evidence and framework gate |
+| `docs/` | Hardware, examples, versions and validation |
+| `scripts/` | Discovery, build entry, static checks and standalone download |
+| `tests/` | Host tooling regression tests |
+| `releases/` | Packaging, aggregate validation and publication tooling |
+| `firmware/` | Preserved test image; excluded from source CI |
+| `.github/workflows/` | Static checks and guarded firmware/Release pipeline |
 
-Use the built-in continuous integration in GitLab.
+## Validation and license
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+[Validation report](docs/validation.md) distinguishes static tests, dependency resolution, compilation and physical-board testing. Documentation-only changes do not trigger full firmware builds. A stable tag can publish only after the complete required matrix and package gates succeed; public versions are never replaced. See [CI](docs/ci.md).
 
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+The supplied [LICENSE](LICENSE) is Apache-2.0 and is preserved. Third-party components retain their own licenses; separate licensing of supplied hardware design files and factory binaries is not inferred.
