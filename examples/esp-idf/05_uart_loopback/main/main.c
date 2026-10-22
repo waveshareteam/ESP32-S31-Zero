@@ -11,8 +11,8 @@
 #include "freertos/task.h"
 
 #define TEST_UART UART_NUM_1
-#define TEST_TXD  GPIO_NUM_8
-#define TEST_RXD  GPIO_NUM_9
+#define TEST_TXD  GPIO_NUM_58
+#define TEST_RXD  GPIO_NUM_59
 
 static const char *TAG = "uart_loopback";
 
@@ -32,7 +32,7 @@ void app_main(void)
     ESP_ERROR_CHECK(uart_set_pin(TEST_UART, TEST_TXD, TEST_RXD,
                                  UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE));
 
-    ESP_LOGI(TAG, "Connect J2 pin 8 (GPIO8 TX) to J2 pin 10 (GPIO9 RX)");
+    ESP_LOGI(TAG, "Connect H2 pin 2 (GPIO58 UART1 TX) to H2 pin 1 (GPIO59 UART1 RX)");
 
     uint32_t sequence = 0;
     char tx_buffer[64];

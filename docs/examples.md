@@ -8,7 +8,7 @@ All paths below are repository-relative. There were **12 existing source project
 | 02_blinkrgb | [02_blink_rgb](../examples/esp-idf/02_blink_rgb/) | GPIO60 WS2812B-1010 RGB cycle |
 | 03_chipinfo | [03_chip_info](../examples/esp-idf/03_chip_info/) | Chip identity and physical Flash capacity |
 | 04_bootbutton | [04_boot_button](../examples/esp-idf/04_boot_button/) | GPIO61 active-low button |
-| 05_uart_loopback | [05_uart_loopback](../examples/esp-idf/05_uart_loopback/) | Jumper J2 pin 8 to pin 10 |
+| 05_uart_loopback | [05_uart_loopback](../examples/esp-idf/05_uart_loopback/) | Jumper H2 pin 2 (GPIO58 TX) to pin 1 (GPIO59 RX) |
 | 06_i2c_scan | [06_i2c_scan](../examples/esp-idf/06_i2c_scan/) | External bus, SDA J2/19, SCL J2/21; zero devices is valid |
 | 07_wifi_scan | [07_wifi_scan](../examples/esp-idf/07_wifi_scan/) | External antenna; AP scanning |
 | 08_wifi_sta | [08_wifi_sta](../examples/esp-idf/08_wifi_sta/) | External antenna; configure local SSID/password |
