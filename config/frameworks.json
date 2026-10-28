@@ -1,0 +1,33 @@
+{
+  "target": "esp32s31",
+  "audit_date": "2026-10-28",
+  "frameworks": [
+    {
+      "version": "6.2.0-dev-08e0d30a74ad",
+      "commit": "08e0d30a74ad0bfd5a34933142b80f45619ee410",
+      "experimental": true,
+      "component_manager": "3.1.2"
+    }
+  ],
+  "support_status": "experimental_authorized",
+  "candidates": [
+    {
+      "version": "v6.1",
+      "commit": "fff9895c82d744c7237be8847347bdd1b07c6643",
+      "status": "stable_framework_preview_target",
+      "evidence": "https://github.com/espressif/esp-idf/blob/v6.1/tools/idf_py_actions/constants.py"
+    },
+    {
+      "version": "v5.5.6",
+      "commit": "880a203ae603d08a94d06aa01e0d6761958e5e9e",
+      "status": "target_absent",
+      "evidence": "https://github.com/espressif/esp-idf/blob/v5.5.6/tools/idf_py_actions/constants.py"
+    },
+    {
+      "version": "6.2.0-dev-08e0d30a74ad",
+      "commit": "08e0d30a74ad0bfd5a34933142b80f45619ee410",
+      "status": "authorized_experimental_lane",
+      "evidence": "https://github.com/espressif/esp-idf/blob/08e0d30a74ad0bfd5a34933142b80f45619ee410/tools/idf_py_actions/constants.py"
+    }
+  ]
+}

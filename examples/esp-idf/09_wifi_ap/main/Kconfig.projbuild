@@ -1,0 +1,21 @@
+menu "Example Configuration"
+
+    config EXAMPLE_WIFI_AP_SSID
+        string "SoftAP SSID"
+        default "ESP32-S31-Zero"
+
+    config EXAMPLE_WIFI_AP_PASSWORD
+        string "SoftAP password (empty for open network)"
+        default "12345678"
+
+    config EXAMPLE_WIFI_AP_CHANNEL
+        int "SoftAP channel"
+        range 1 13
+        default 1
+
+    config EXAMPLE_WIFI_AP_MAX_CONNECTIONS
+        int "Maximum client connections"
+        range 1 10
+        default 4
+
+endmenu

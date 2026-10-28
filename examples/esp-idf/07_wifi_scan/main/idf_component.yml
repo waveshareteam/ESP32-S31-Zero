@@ -1,0 +1,4 @@
+# Framework revisions and preview authorization are enforced centrally.
+# An explicit IDF dependency makes the resolved framework visible in the lock.
+dependencies:
+  idf: "*"

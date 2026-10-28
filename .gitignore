@@ -1,0 +1,19 @@
+# Local ESP-IDF outputs and credentials
+**/build*/
+**/managed_components/
+**/sdkconfig
+**/sdkconfig.old
+**/dependencies.lock
+**/board_manager/
+**/sdkconfig.local*
+__pycache__/
+*.pyc
+.venv/
+releases/dist/
+releases/downloads/
+release-artifacts/
+.env
+.vscode/
+.idea/
+
+.ci/

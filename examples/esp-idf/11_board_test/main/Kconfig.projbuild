@@ -1,0 +1,10 @@
+menu "Board test"
+    config BOARD_TOUCH_TRACKING
+        bool "Enable continuous touch sampling and touch marker"
+        default n
+        help
+            Enable runtime GT911 sampling, the finger-following marker and
+            touch diagnostics. Disabled by default because touch communication
+            is not yet reliable on the tested hardware. The startup GT911
+            detection test runs regardless of this option.
+endmenu

@@ -1,0 +1,36 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "board_peripherals.c"
+        "board_touch_reader.c"
+        "board_ui.c"
+        "led_strip_encoder.c"
+    PRIV_REQUIRES
+        esp_adc
+        esp_driver_sdmmc
+        esp_event
+        esp_driver_gpio
+        esp_driver_i2c
+        esp_driver_ledc
+        esp_driver_rmt
+        esp_driver_spi
+        esp_driver_tsens
+        esp_driver_uart
+        esp_driver_usb_serial_jtag
+        esp_hw_support
+        esp_lcd
+        esp_lcd_touch_gt911
+        esp_lvgl_adapter
+        esp_netif
+        esp_partition
+        esp_psram
+        esp_system
+        esp_timer
+        esp_wifi
+        efuse
+        fatfs
+        nvs_flash
+        sdmmc
+        spi_flash
+    INCLUDE_DIRS "."
+)
