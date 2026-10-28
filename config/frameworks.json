@@ -1,6 +1,6 @@
 {
   "target": "esp32s31",
-  "audit_date": "2026-10-21",
+  "audit_date": "2026-10-28",
   "frameworks": [
     {
       "version": "6.2.0-dev-08e0d30a74ad",

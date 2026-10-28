@@ -9,7 +9,7 @@ ESP32-S31-Zero V1.0 是基于 ESP32-S31 的小型开发板。所提供原理图�
 - [框架和依赖版本](docs/versions.md)
 - [固件下载与烧录](releases/README.md)
 
-<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S3-LR1121-OLED-1.54-XF" width="500">
+<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S31-Zero" width="500">
 
 
 ## 产品概览
@@ -18,7 +18,7 @@ ESP32-S31-Zero V1.0 是基于 ESP32-S31 的小型开发板。所提供原理图�
 
 ## 框架支持
 
-**实验 CI 已覆盖全部 12 个工程：ESP-IDF `6.2.0-dev-08e0d30a74ad`，固定提交 `08e0d30a74ad0bfd5a34933142b80f45619ee410`。** 本次已明确授权使用该开发版及 ESP32-S31 预览目标配置 CI。查到的最新 6.x 稳定版为官方 v6.1，但其中 S31 仍为预览目标；v5.5.6 没有该目标，未发现正式 v6.2 标签。版本及实验标记见[集中配置](config/frameworks.json)。矩阵已配置不代表实际编译通过；本阶段未执行完整固件编译或实机测试。本仓库没有 Arduino 工程。
+**实验 CI 已覆盖全部 12 个工程：ESP-IDF `6.2.0-dev-08e0d30a74ad`，固定提交 `08e0d30a74ad0bfd5a34933142b80f45619ee410`。** 已明确授权使用该开发版及 ESP32-S31 预览目标。查到的最新 6.x 稳定版为官方 v6.1，但其中 S31 仍为预览目标；v5.5.6 没有该目标，未发现正式 v6.2 标签。版本及实验标记见[集中配置](config/frameworks.json)。2026-10-28 已在本地完整编译通过全部 12 个工程，并验证对应固件包；GitHub 运行和实机测试仍待完成，详见[验证记录](docs/validation.md)。本仓库没有 Arduino 工程。
 
 ## 示例
 

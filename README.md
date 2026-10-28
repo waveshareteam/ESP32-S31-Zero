@@ -9,7 +9,7 @@ ESP32-S31-Zero V1.0 is a compact development board built around ESP32-S31. The s
 - [Framework and dependency support](docs/versions.md)
 - [Firmware download and flashing](releases/README.md)
 
-<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S3-LR1121-OLED-1.54-XF" width="500">
+<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S31-Zero" width="500">
 
 ## Overview
 
@@ -17,7 +17,7 @@ The repository preserves 12 existing ESP-IDF source projects, the supplied test 
 
 ## Framework support
 
-**The experimental CI matrix covers all 12 projects using ESP-IDF `6.2.0-dev-08e0d30a74ad`, pinned to commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.** This development framework and its ESP32-S31 preview target are explicitly approved for CI configuration. Official v6.1 is the latest stable 6.x release found in this audit, but ESP32-S31 remains a preview target; v5.5.6 does not include it and no stable v6.2 tag was found. See the [central configuration](config/frameworks.json). Configuring the matrix does not establish compilation success. No full firmware build or hardware test has been performed. No Arduino project is present.
+**The experimental CI matrix covers all 12 projects using ESP-IDF `6.2.0-dev-08e0d30a74ad`, pinned to commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.** This development framework and its ESP32-S31 preview target are explicitly approved. Official v6.1 is the latest stable 6.x release found in this audit, but ESP32-S31 remains a preview target; v5.5.6 does not include it and no stable v6.2 tag was found. See the [central configuration](config/frameworks.json). All 12 projects compiled locally and their firmware packages passed validation on 2026-10-28. GitHub execution and physical-board testing remain pending; see the [validation record](docs/validation.md). No Arduino project is present.
 
 ## Examples
 

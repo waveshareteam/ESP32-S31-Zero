@@ -205,6 +205,27 @@ class PackageTests(unittest.TestCase):
         shutil.copy(file,self.out/'extra.zip')
         with self.assertRaises(ValueError):release.validate_set(self.out,[ROW],COMMIT)
 
+    def test_cli_selected_artifact_set_does_not_relax_full_matrix(self):
+        row = discovery.matrix()['include'][0]
+        description = self.build/'project_description.json'
+        metadata = json.loads(description.read_text())
+        metadata['project_name'] = row['name']
+        description.write_text(json.dumps(metadata))
+        with patch.object(pack, 'git', return_value=row['commit']):
+            pack.package(self.build, row, COMMIT, 1700000000, self.lock, self.out)
+        command = [sys.executable, str(ROOT/'releases/validate_release.py'),
+                   str(self.out), '--commit', COMMIT]
+        selected = subprocess.run(command + ['--example', row['name']], capture_output=True, text=True)
+        self.assertEqual(selected.returncode, 0, selected.stderr)
+        self.assertIn('Validated 1 firmware packages', selected.stdout)
+        full = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(full.returncode, 0)
+        self.assertIn('Expected 12 archives, found 1', full.stderr)
+        stale = subprocess.run(command + ['--example', row['name'], '--commit', 'c'*40],
+                               capture_output=True, text=True)
+        self.assertNotEqual(stale.returncode, 0)
+        self.assertIn('mismatch', stale.stderr)
+
     @unittest.skipUnless(os.name == 'posix', 'POSIX shell execution test')
     def test_shell_fallback_and_port_quoting(self):
         file=self.package();m,data=download.inspect_archive(file)
@@ -339,7 +360,7 @@ class BuildEntryTests(unittest.TestCase):
 class WorkflowTests(unittest.TestCase):
     def test_release_dependencies_no_failure_bypass(self):
         workflow=(ROOT/'.github/workflows/firmware.yml').read_text()
-        self.assertIn('needs: [checks, build]',workflow)
+        self.assertIn('needs: [checks, build, validate-artifacts]',workflow)
         self.assertNotIn('always()',workflow)
         self.assertNotIn('continue-on-error',workflow)
         self.assertIn('if-no-files-found: error',workflow)

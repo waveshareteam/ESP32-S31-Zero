@@ -39,9 +39,10 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('directory', type=Path)
     p.add_argument('--commit', required=True)
+    p.add_argument('--example', default='all', help='Same selector as the build; tags must use all')
     a = p.parse_args()
     try:
-        files = validate_set(a.directory, matrix()['include'], a.commit)
+        files = validate_set(a.directory, matrix(selector=a.example)['include'], a.commit)
         print(f'Validated {len(files)} firmware packages')
     except (ValueError, OSError, KeyError) as exc:
         p.exit(2, f'{exc}\n')
