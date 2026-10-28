@@ -2,9 +2,9 @@
 
 [English](README.md)
 
-ESP32-S31-Zero V1.0 是基于 ESP32-S31 的小型开发板。所提供原理图包含 WS2812B-1010 RGB LED、BOOT/RESET 按键、USB Type-C、外置 SPI Flash、射频连接器，以及 GPIO/LCD/触摸/SD 扩展接口。扩展接口不代表板上已安装屏幕或触摸器件。
+ESP32-S31-Zero 是基于 ESP32-S31 的小型开发板，配备 WS2812B-1010 RGB LED、BOOT/RESET 按键、USB Type-C、外置 SPI Flash、射频连接器，以及 GPIO/LCD/触摸/SD 扩展接口。
 
-- [硬件证据与待确认项](docs/hardware.md)
+- [硬件说明](docs/hardware.md)
 - [示例清单与构建入口](docs/examples.md)
 - [框架和依赖版本](docs/versions.md)
 - [固件下载与烧录](releases/README.md)
@@ -14,7 +14,7 @@ ESP32-S31-Zero V1.0 是基于 ESP32-S31 的小型开发板。所提供原理图�
 
 ## 产品概览
 
-仓库保留 12 个原有 ESP-IDF 源码工程、测试二进制、原理图和封装文件。暂不使用其他产品图片。原理图标注 Flash 为 GD25Q256EYIGR（32 MiB），现有工程保留 16 MiB 镜像头与分区设置。PSRAM 容量和芯片完整订货后缀待确认。RGB 使用 GPIO60，低有效按键使用 GPIO61；Type-C 的 USB Serial/JTAG 使用 GPIO33/34，与原有外接 LCD 夹具共用。
+仓库提供 12 个 ESP-IDF 源码工程、测试二进制及硬件资料。RGB 使用 GPIO60，低有效按键使用 GPIO61；USB Type-C 的 USB Serial/JTAG 使用 GPIO33/34。
 
 ## 框架支持
 
@@ -34,10 +34,8 @@ ESP32-S31-Zero V1.0 是基于 ESP32-S31 的小型开发板。所提供原理图�
 | [08_wifi_sta](examples/esp-idf/08_wifi_sta/) | Wi-Fi STA |
 | [09_wifi_ap](examples/esp-idf/09_wifi_ap/) | Wi-Fi SoftAP |
 | [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/) | BLE 广播 |
-| [11_board_test](examples/esp-idf/11_board_test/) | 保留的外接夹具综合测试 |
-| [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | 保留的 Wi-Fi 吞吐控制台 |
-
-原有 12 个、新建 0 个、整理后维护 12 个工程。路径映射及所需设备见[盘点文档](docs/examples.md)。11、12 是保留的现有应用，并非本次新增综合功能。11 需要外接夹具，PSRAM、屏幕和触摸参数仍有待确认项。
+| [11_board_test](examples/esp-idf/11_board_test/) | 综合测试 |
+| [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | Wi-Fi 吞吐控制台 |
 
 ## 使用入口
 

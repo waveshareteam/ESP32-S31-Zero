@@ -2,9 +2,9 @@
 
 [中文](README_ZH.md)
 
-ESP32-S31-Zero V1.0 is a compact development board built around ESP32-S31. The supplied schematic shows a WS2812B-1010 RGB LED, boot/reset keys, USB Type-C, external SPI Flash, RF connector and GPIO/LCD/touch/SD expansion connections. External display and touch modules are not established as onboard components.
+ESP32-S31-Zero is a compact development board built around ESP32-S31, featuring a WS2812B-1010 RGB LED, BOOT/RESET buttons, USB Type-C, external SPI Flash, an RF connector, and GPIO/LCD/touch/SD expansion interfaces.
 
-- [Hardware evidence and open questions](docs/hardware.md)
+- [Hardware information](docs/hardware.md)
 - [Examples and build entry](docs/examples.md)
 - [Framework and dependency support](docs/versions.md)
 - [Firmware download and flashing](releases/README.md)
@@ -13,7 +13,7 @@ ESP32-S31-Zero V1.0 is a compact development board built around ESP32-S31. The s
 
 ## Overview
 
-The repository preserves 12 existing ESP-IDF source projects, the supplied test binary, schematic and footprints. No product image from another board is used. The schematic's GD25Q256EYIGR is 32 MiB; existing projects retain a 16 MiB image/partition configuration. PSRAM capacity and the exact chip ordering suffix remain unconfirmed. GPIO60 drives the RGB LED and GPIO61 reads the active-low key. H1 USB Serial/JTAG uses GPIO33/34, also used by the existing external LCD fixture.
+The repository provides 12 ESP-IDF source projects, a test binary, and hardware resources. GPIO60 drives the RGB LED and GPIO61 reads the active-low button. USB Type-C uses GPIO33/34 for USB Serial/JTAG.
 
 ## Framework support
 
@@ -33,10 +33,8 @@ The repository preserves 12 existing ESP-IDF source projects, the supplied test 
 | [08_wifi_sta](examples/esp-idf/08_wifi_sta/) | Wi-Fi station |
 | [09_wifi_ap](examples/esp-idf/09_wifi_ap/) | Wi-Fi SoftAP |
 | [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/) | BLE advertiser |
-| [11_board_test](examples/esp-idf/11_board_test/) | Existing external fixture test |
-| [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | Existing Wi-Fi throughput console |
-
-12 original projects, 0 newly added projects, 12 maintained projects. Naming changes and hardware requirements are listed in [the inventory](docs/examples.md). Examples 11 and 12 are preserved existing applications, not newly expanded scope. Example 11 needs external hardware and has unconfirmed PSRAM/display assumptions.
+| [11_board_test](examples/esp-idf/11_board_test/) | Comprehensive test |
+| [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | Wi-Fi throughput console |
 
 ## Getting started
 
