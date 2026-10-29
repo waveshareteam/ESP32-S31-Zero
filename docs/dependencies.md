@@ -1,45 +1,36 @@
-# Resolved dependency audit
+# Dependencies
 
-Framework: `6.2.0-dev-08e0d30a74ad`, commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.
-Target: `esp32s31`. Resolver: **ESP-IDF Component Manager 3.1.2**. Full build audit date: 2026-10-28.
+## Build environment
 
-All **12 projects passed full CMake/Kconfig-aware dependency resolution, download and compilation** in isolated source copies. The resolver used the pinned SDK's Component Manager interface version 5 and its declared IDF version 6.2.0. That internal version is not a claim that 6.2 is a stable release. The original local SDK configurations were excluded from the copies and preserved unchanged.
+Use ESP-IDF `6.2.0-dev-08e0d30a74ad` at commit `08e0d30a74ad0bfd5a34933142b80f45619ee410` with ESP-IDF Component Manager **3.1.2**. ESP32-S31 support in this framework is experimental and requires the `esp32s31` preview target. See the [framework configuration](../config/frameworks.json) and [build instructions](examples.md).
 
-This audit validates the complete CMake component graph, post-Kconfig dependency pass, C/C++ compilation and linking for the pinned lane. Board behavior remains untested. CI must perform its own configuration/build and package its own final resolved lock. Audit locks and downloaded components remain ignored; the table is an observation, not a hand-written lock or an additional version constraint.
-
-## Examples 01–10
-
-Each resolved only the framework dependency `idf: 6.2.0`; no managed third-party component was required by its main manifest. Framework CMake dependencies passed real configuration/build.
+Component Manager downloads the declared registry components and their dependencies during project configuration. Examples 01–10 use ESP-IDF components only; examples 11 and 12 also use the components below.
 
 ## 11_board_test
 
-| Dependency | Resolved version |
-| --- | --- |
-| `espressif/button` | 4.2.3 |
-| `espressif/cmake_utilities` | 0.5.3 |
-| `espressif/esp_lcd_touch` | 1.2.1 |
-| `espressif/esp_lcd_touch_gt911` | 1.2.1 |
-| `espressif/esp_lv_decoder` | 0.4.3 |
-| `espressif/esp_lv_fs` | 1.0.1 |
-| `espressif/esp_lvgl_adapter` | 0.6.4 |
-| `espressif/esp_mmap_assets` | 2.0.1 |
-| `espressif/esp_new_jpeg` | 1.0.2 |
-| `espressif/freetype` | 2.14.3~1 |
-| `espressif/knob` | 1.1.0 |
-| `espressif/libpng` | 1.6.59 |
-| `espressif/zlib` | 1.3.2~2 |
-| `idf` | 6.2.0 |
-| `lvgl/lvgl` | 9.5.0 |
+The [component manifest](../examples/esp-idf/11_board_test/main/idf_component.yml) declares:
+
+| Component | Required version | Version used in the verified build |
+| --- | --- | --- |
+| `idf` | `>=6.2.0` | Development revision listed above |
+| `espressif/esp_lcd_touch` | `1.2.1` | 1.2.1 |
+| `espressif/esp_lcd_touch_gt911` | `1.2.1` | 1.2.1 |
+| `espressif/esp_lvgl_adapter` | `0.6.4` | 0.6.4 |
+| `lvgl/lvgl` | `9.5.0` | 9.5.0 |
 
 ## 12_wifi_performance
 
-| Dependency | Resolved version |
-| --- | --- |
-| `cmd_system` | Local component from the pinned IDF checkout (lock version `*`) |
-| `esp-qa/ping-cmd` | 1.0.0 |
-| `esp-qa/wifi-cmd` | 0.2.12 |
-| `espressif/iperf` | 1.0.3 |
-| `espressif/iperf-cmd` | 1.0.3 |
-| `idf` | 6.2.0 |
+The [component manifest](../examples/esp-idf/12_wifi_performance/main/idf_component.yml) declares:
 
-`cmd_system` is sourced from `${IDF_PATH}/examples/system/console/advanced/components/cmd_system`; the framework commit pins that local component. Optional adapter features may change the dependency graph during the complete Kconfig-aware configure pass. Preserve the resulting release archive's actual `dependencies.lock` for reproduction.
+| Component | Required version | Version used in the verified build |
+| --- | --- | --- |
+| `cmd_system` | Included with ESP-IDF | Development revision listed above |
+| `espressif/iperf-cmd` | `~1.0.2` | 1.0.3 |
+| `esp-qa/wifi-cmd` | `~0.2.7` | 0.2.12 |
+| `esp-qa/ping-cmd` | `~1.0.0` | 1.0.0 |
+
+`cmd_system` comes from `${IDF_PATH}/examples/system/console/advanced/components/cmd_system` in the selected ESP-IDF checkout.
+
+## Reproducing a build
+
+The reference versions above were used for the builds verified on **2026-10-28**. Version ranges and optional component features can change the resolved dependencies. Each generated firmware ZIP includes its build's `dependencies.lock`, which records the complete resolved component set, including transitive dependencies. Preserve that lock and use the same framework commit when reproducing a packaged build.
