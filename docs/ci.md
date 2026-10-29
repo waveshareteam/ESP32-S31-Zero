@@ -2,6 +2,8 @@
 
 [Repository checks](../.github/workflows/checks.yml) run actionlint 1.7.12 (download verified by SHA-256), static validation and Python tests, including on documentation changes. [Firmware workflow](../.github/workflows/firmware.yml) runs only for source/config/tooling changes, manual dispatch, or version tags. Documentation-only branch changes do not trigger full builds.
 
+Both workflows run on pull requests, pushes to `main`, version tags and manual dispatch. Feature branches are checked through their pull requests, avoiding duplicate push and PR runs. New commits cancel outdated runs for the same branch or PR; version-tag runs are serialized without cancellation. Dependabot groups monthly Actions updates into one pull request.
+
 The discover job accepts `all`, a direct example name, or a repository-relative path. Tags always select `all`. The matrix is **12 first-party projects × 1 approved experimental framework lane = 12 required builds / 12 firmware ZIPs**. The lane is `6.2.0-dev-08e0d30a74ad`, pinned to `08e0d30a74ad0bfd5a34933142b80f45619ee410`, with `experimental: true`. It is required for release completeness, not an optional job. Local compilation and archive results are recorded in [testing and compatibility](validation.md); GitHub execution is a separate acceptance check.
 
 Every approved lane installs ESP-IDF from its exact commit with recursive submodules, installs that revision's tools, pins Component Manager 3.1.2 and runs the common build entry. Jobs are marked with `experimental` status. No failed or experimental job is silently optional. Successful branch jobs upload Actions artifacts; a partly successful branch may have artifacts, but cannot publish a partial Release.
@@ -20,7 +22,7 @@ Every successful source build run, including pull requests, downloads its `firmw
 6. Create a draft, upload only the validated set, and compare all remote asset names, sizes, upload states and SHA-256 digests.
 7. Publish only the verified draft. Re-read the public Release and freshly download/validate a representative ZIP.
 
-The Release job alone gets `contents: write`. Checkout credentials are not persisted. Actions are pinned by full commit and tracked by Dependabot. Same-ref runs are serialized without cancelling an in-progress publication.
+The Release job alone gets `contents: write`. Checkout credentials are not persisted. Actions are pinned by full commit and tracked by Dependabot. Version-tag runs do not cancel an in-progress publication.
 
 ## Pull request preflight
 
@@ -44,4 +46,6 @@ The packager requires a clean tracked source tree and refuses existing archive f
 
 ## Hosting prerequisites
 
-The supplied checkout currently has one primary remote; no GitHub publication repository, mirror direction or tag-protection configuration was verified. These are deployment prerequisites, not assumptions built into source code. GitHub Actions must be enabled in the chosen GitHub repository. Mirror or explicitly synchronize the reviewed source and tags only after separate authorization. Use a public GitHub repository for the unauthenticated download and public post-publication verification paths. Protect default branches and version tags. No remote settings were changed by this audit.
+GitHub Actions must be enabled and GitHub-hosted runners must be available. Private repositories need available Actions minutes and a valid billing/spending configuration; a billing restriction prevents jobs from starting before any workflow step runs. See [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+
+Use a public GitHub repository for unauthenticated firmware downloads and public post-publication verification. Protect the default branch and version tags, and synchronize reviewed source and tags to the publication repository.

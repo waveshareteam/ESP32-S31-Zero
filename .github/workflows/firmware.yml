@@ -1,7 +1,7 @@
 name: ESP32-S31 firmware (experimental)
 on:
   push:
-    branches: ['**']
+    branches: [main]
     paths:
       - 'examples/esp-idf/**'
       - '!examples/esp-idf/**/*.md'
@@ -31,7 +31,7 @@ permissions:
   contents: read
 concurrency:
   group: firmware-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}
 jobs:
   checks:
     runs-on: ubuntu-24.04
