@@ -17,7 +17,7 @@ The repository provides 12 ESP-IDF source projects, a test binary, and hardware 
 
 ## Framework support
 
-**The experimental CI matrix covers all 12 projects using ESP-IDF `6.2.0-dev-08e0d30a74ad`, pinned to commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.** This development framework and its ESP32-S31 preview target are explicitly approved. Official v6.1 is the latest stable 6.x release found in this audit, but ESP32-S31 remains a preview target; v5.5.6 does not include it and no stable v6.2 tag was found. See the [central configuration](config/frameworks.json). All 12 projects compiled locally and their firmware packages passed validation on 2026-10-28. GitHub execution and physical-board testing remain pending; see the [validation record](docs/validation.md). No Arduino project is present.
+**The experimental CI matrix covers all 12 projects using ESP-IDF `6.2.0-dev-08e0d30a74ad`, pinned to commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.** This development framework and its ESP32-S31 preview target are explicitly approved. Official v6.1 is the latest stable 6.x release found in this audit, but ESP32-S31 remains a preview target; v5.5.6 does not include it and no stable v6.2 tag was found. See the [central configuration](config/frameworks.json). All 12 projects compiled locally and their firmware packages passed validation on 2026-10-28. GitHub execution and physical-board testing remain pending; see [testing and compatibility](docs/validation.md). No Arduino project is present.
 
 ## Examples
 
@@ -72,6 +72,6 @@ Use the pinned framework and [build entry](docs/examples.md). Successful source 
 
 ## Validation and license
 
-[Validation report](docs/validation.md) distinguishes static tests, dependency resolution, compilation and physical-board testing. Documentation-only changes do not trigger full firmware builds. A stable tag can publish only after the complete required matrix and package gates succeed; public versions are never replaced. See [CI](docs/ci.md).
+[Testing and compatibility](docs/validation.md) summarizes build results and test coverage. Documentation-only changes do not trigger full firmware builds. A stable tag can publish only after the complete required matrix and package gates succeed; public versions are never replaced. See [CI](docs/ci.md).
 
 The supplied [LICENSE](LICENSE) is Apache-2.0 and is preserved. Third-party components retain their own licenses; separate licensing of supplied hardware design files and factory binaries is not inferred.
