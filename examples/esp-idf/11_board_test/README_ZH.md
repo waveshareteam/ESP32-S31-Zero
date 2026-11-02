@@ -24,4 +24,4 @@ LCD 显示 PASS/FAIL 结果，板载 RGB LED 按红、绿、蓝每秒切换。SD
 
 ## 常见问题
 
-LCD 启动后 GPIO33/34 转作屏幕信号，USB Serial/JTAG 输出随之结束，后续结果请看屏幕。Flash 写入使用专用 testdata 分区；持续触摸跟踪可在 menuconfig 的 Board test 中启用。
+LCD 帧缓冲和内存测试所需的 PSRAM 默认启用；复用已有 sdkconfig 时，请在 menuconfig 中启用外部 PSRAM 支持。LCD 启动后 GPIO33/34 转作屏幕信号，USB Serial/JTAG 输出随之结束，后续结果请看屏幕。Flash 写入使用专用 testdata 分区；持续触摸跟踪可在 menuconfig 的 Board test 中启用。

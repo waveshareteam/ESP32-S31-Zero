@@ -24,4 +24,4 @@ The LCD shows PASS/FAIL results while the onboard RGB LED cycles red, green, and
 
 ## Troubleshooting
 
-LCD startup reassigns GPIO33/34, ending USB Serial/JTAG output; read subsequent results on the screen. Flash writes use the dedicated testdata partition, and continuous touch tracking can be enabled under Board test in menuconfig.
+PSRAM is enabled by default for the LCD framebuffer and memory tests; when reusing an existing sdkconfig, enable external PSRAM support in menuconfig. LCD startup reassigns GPIO33/34, ending USB Serial/JTAG output; read subsequent results on the screen. Flash writes use the dedicated testdata partition, and continuous touch tracking can be enabled under Board test in menuconfig.
