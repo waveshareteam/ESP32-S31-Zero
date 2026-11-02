@@ -82,7 +82,7 @@ ESP32-S31-Zero 是基于 ESP32-S31 的小型无线开发板，配备 USB Type-C�
 | --- | --- | ---: |
 | ESP-IDF | `v6.1`（ESP32-S31 预览目标） | 12 |
 
-示例 [11](examples/esp-idf/11_board_test/README_ZH.md) 要求 ESP-IDF ≥6.2.0，[12](examples/esp-idf/12_wifi_performance/README_ZH.md) 使用 6.2 开发版接口；这两个示例不能按上表版本视为已兼容，运行前请阅读各自要求。
+ESP32-S31 为预览目标，请按各示例使用 `idf.py --preview`。现有示例统一采用 16 MB Flash 镜像与分区设置，可用于 16 MB 和 32 MB Flash 型号。
 
 ## 📚 资料
 

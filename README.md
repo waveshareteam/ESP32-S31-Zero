@@ -82,7 +82,7 @@ Restore the factory demo: download `ESP32-S31-Zero_FactoryOnly_20261020.bin` fro
 | --- | --- | ---: |
 | ESP-IDF | `v6.1` (ESP32-S31 preview target) | 12 |
 
-Example [11](examples/esp-idf/11_board_test/) requires ESP-IDF ≥6.2.0, and [12](examples/esp-idf/12_wifi_performance/) uses 6.2 development APIs; compatibility with the version above is not established for these two examples. Read their requirements before building.
+ESP32-S31 is a preview target; use `idf.py --preview` as shown in each example. Existing examples configure a 16 MB Flash image and partition layout for both 16 MB and 32 MB board variants.
 
 ## 📚 Resources
 

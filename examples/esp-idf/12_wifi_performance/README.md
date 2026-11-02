@@ -12,8 +12,6 @@ ESP32-S31-Zero, a USB data cable, a 2.4 GHz router, and a computer running iperf
 
 ## How to Run
 
-This example uses ESP-IDF 6.2 development APIs and needs a matching development environment.
-
 From this example directory in an ESP-IDF-enabled Linux Bash or Windows PowerShell:
 
 ```sh

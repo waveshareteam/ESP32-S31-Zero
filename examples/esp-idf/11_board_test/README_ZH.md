@@ -8,11 +8,9 @@
 
 ## 硬件需求
 
-ESP32-S31-Zero、USB 数据线及与[引脚定义](main/board_peripherals.h)一致的外接 800 × 480 RGB LCD / GT911 触摸 / SD / 状态灯夹具。LCD 使用 PSRAM，SD 使用 GPIO20–25 并需外接上拉，触摸使用 GPIO52/53、INT GPIO7 和 RESET GPIO38，夹具状态灯使用 GPIO54。
+ESP32-S31-Zero、USB 数据线及与[引脚定义](main/board_peripherals.c)一致的外接 800 × 480 RGB LCD / GT911 触摸 / SD / 状态灯夹具。LCD 使用 PSRAM，SD 使用 GPIO20–25 并需外接上拉，触摸使用 GPIO52/53、INT GPIO7 和 RESET GPIO38，夹具状态灯使用 GPIO54。
 
 ## 怎么运行
-
-本例的依赖清单要求 ESP-IDF ≥6.2.0，不能使用仓库配置的 v6.1；应使用匹配的 6.2 开发环境。
 
 在已配置 ESP-IDF 的 Linux Bash 或 Windows PowerShell 中，进入本示例目录运行：
 
