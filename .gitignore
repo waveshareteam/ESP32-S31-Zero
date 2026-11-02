@@ -1,19 +1,34 @@
-# Local ESP-IDF outputs and credentials
-**/build*/
-**/managed_components/
+**/.vscode
+**/.idea
+**/build
+**/managed_components
+**/dependencies.lock
 **/sdkconfig
 **/sdkconfig.old
-**/dependencies.lock
+**/__pycache__/
+release-artifacts/
+release-downloads/
+release-dist/
+
+# Local AI coding agent state
+.claude/
+.cursor/
+.codex/
+.gemini/
+.windsurf/
+.continue/
+.roo/
+.cline/
+.aider*
+
+# Additional local build outputs and configuration
+**/build*/
 **/board_manager/
 **/sdkconfig.local*
-__pycache__/
 *.pyc
 .venv/
+.env
+.ci/
+.ci-template/
 releases/dist/
 releases/downloads/
-release-artifacts/
-.env
-.vscode/
-.idea/
-
-.ci/
