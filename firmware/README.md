@@ -1,9 +1,21 @@
-# Supplied factory/test binary
+# Firmware
 
-`ESP32-S31-Zero-Test.bin` is preserved byte-for-byte from the supplied files.
+[English](README.md) | [简体中文](README_ZH.md)
 
-- Size: 1474656 bytes.
-- SHA-256: `1654bcb86a04789e5f0167b31623b2e18c2f5f9acd0226039e229d8151d6b1f4`.
-- Exact source commit, framework revision, combined-image base address and fixture contract: unconfirmed.
+Merged firmware tested on the ESP32-S31-Zero board, flashed at `0x0`. Older versions are kept; the newest is listed first.
 
-The leading bytes are erased padding, so the filename and first byte do not establish an application offset. No flashing command is supplied until the original build/flash metadata is available. The image is excluded from source-build matrices and Releases. Matching provenance and build instructions may be added later. Do not infer that current example 11 reproduces this binary.
+| File | Purpose |
+| --- | --- |
+| [ESP32-S31-Zero_FactoryOnly_20261020.bin](ESP32-S31-Zero_FactoryOnly_20261020.bin) | Factory firmware V1, 2026-10-20, restores the out-of-box demo |
+
+Run from this directory and replace `<PORT>` with the board port. Erasing removes all data in Flash.
+
+Ubuntu Bash / Windows PowerShell:
+
+```sh
+python -m pip install esptool
+python -m esptool --chip esp32s31 --port <PORT> erase-flash
+python -m esptool --chip esp32s31 --port <PORT> write-flash 0x0 ESP32-S31-Zero_FactoryOnly_20261020.bin
+```
+
+If download mode is needed, hold BOOT, press RESET, then release BOOT; press RESET after flashing to run.
