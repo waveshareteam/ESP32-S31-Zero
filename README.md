@@ -1,77 +1,100 @@
-# Waveshare ESP32-S31-Zero
+<div align="center">
+  <h1>ESP32-S31-Zero</h1>
+  <p><strong>Compact ESP32-S31 wireless development board</strong></p>
+  <p><strong>English</strong> | <a href="README_ZH.md">简体中文</a></p>
+  <p>
+    <a href="https://github.com/waveshareteam/ESP32-S31-Zero/actions/workflows/build.yml"><img alt="Build" src="https://github.com/waveshareteam/ESP32-S31-Zero/actions/workflows/build.yml/badge.svg"></a>
+    <a href="https://github.com/waveshareteam/ESP32-S31-Zero/releases/latest"><img alt="Latest Release" src="https://img.shields.io/github/v/release/waveshareteam/ESP32-S31-Zero"></a>
+    <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/waveshareteam/ESP32-S31-Zero"></a>
+  </p>
+  <p>
+    <a href="https://docs.waveshare.net/ESP32-S31-Zero/">🌐 Product</a> &middot;
+    <a href="https://github.com/waveshareteam/ESP32-S31-Zero/releases/latest">📦 Firmware</a> &middot;
+    <a href="examples/esp-idf/">🧩 ESP-IDF</a> &middot;
+    <a href="hardware/">📚 Documentation</a>
+  </p>
+  <p><img src="docs/images/ESP32-S31-Zero.webp" alt="ESP32-S31-Zero development board" width="500"></p>
+</div>
 
-[中文](README_ZH.md)
+---
 
-ESP32-S31-Zero is a compact development board built around ESP32-S31, featuring a WS2812B-1010 RGB LED, BOOT/RESET buttons, USB Type-C, external SPI Flash, an RF connector, and GPIO/LCD/touch/SD expansion interfaces.
+## ✨ Overview
 
-- [Hardware information](docs/hardware.md)
-- [Examples and build entry](docs/examples.md)
-- [Framework and dependency support](docs/versions.md)
-- [Firmware download and flashing](releases/README.md)
+ESP32-S31-Zero is a compact ESP32-S31 wireless development board with USB Type-C, an RGB LED, BOOT/RESET buttons, and GPIO/LCD/touch/SD expansion interfaces. This repository provides ESP-IDF examples, factory firmware, and hardware resources.
 
-<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S31-Zero" width="500">
-
-## Overview
-
-The repository provides 12 ESP-IDF source projects, a test binary, and hardware resources. GPIO60 drives the RGB LED and GPIO61 reads the active-low button. USB Type-C uses GPIO33/34 for USB Serial/JTAG.
-
-## Framework support
-
-**The experimental CI matrix covers all 12 projects using ESP-IDF `6.2.0-dev-08e0d30a74ad`, pinned to commit `08e0d30a74ad0bfd5a34933142b80f45619ee410`.** This development framework and its ESP32-S31 preview target are explicitly approved. Official v6.1 is the latest stable 6.x release found in this audit, but ESP32-S31 remains a preview target; v5.5.6 does not include it and no stable v6.2 tag was found. See the [central configuration](config/frameworks.json). All 12 projects compiled locally and their firmware packages passed validation on 2026-10-28. GitHub execution and physical-board testing remain pending; see [testing and compatibility](docs/validation.md).
-
-## Examples
-
-| ESP-IDF project | Purpose |
+| Feature | Device / interface |
 | --- | --- |
-| [01_gpio_output](examples/esp-idf/01_gpio_output/) | GPIO output-high demonstration |
-| [02_blink_rgb](examples/esp-idf/02_blink_rgb/) | Onboard RGB LED |
-| [03_chip_info](examples/esp-idf/03_chip_info/) | Chip and physical Flash information |
-| [04_boot_button](examples/esp-idf/04_boot_button/) | Active-low boot button |
-| [05_uart_loopback](examples/esp-idf/05_uart_loopback/) | UART loopback with jumper |
-| [06_i2c_scan](examples/esp-idf/06_i2c_scan/) | External I²C bus scan |
-| [07_wifi_scan](examples/esp-idf/07_wifi_scan/) | Wi-Fi scan |
-| [08_wifi_sta](examples/esp-idf/08_wifi_sta/) | Wi-Fi station |
-| [09_wifi_ap](examples/esp-idf/09_wifi_ap/) | Wi-Fi SoftAP |
-| [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/) | BLE advertiser |
-| [11_board_test](examples/esp-idf/11_board_test/) | Comprehensive test |
+| MCU | ESP32-S31, dual-core RISC-V, up to 320 MHz |
+| Memory | 16 / 32 MB Flash, 16 / 32 MB PSRAM; see below |
+| Wireless | 2.4 GHz Wi-Fi 6, Bluetooth LE |
+| RGB LED | WS2812B-1010 on GPIO60 |
+| Buttons | BOOT (GPIO61, active low), RESET |
+| USB | Type-C, USB Serial/JTAG on GPIO33/34 |
+| Expansion | GPIO, RGB LCD, touch, SD interfaces |
+
+Memory options are listed below; `-M` denotes the pin-header version. Flash and PSRAM capacities are in MB.
+
+| SKU | Model | Flash | PSRAM |
+| --- | --- | ---: | ---: |
+| 35879 | ESP32-S31-Zero-N16R16 | 16 | 16 |
+| 36165 | ESP32-S31-Zero-N16R16-M | 16 | 16 |
+| 35880 | ESP32-S31-Zero-N32R16 | 32 | 16 |
+| 36166 | ESP32-S31-Zero-N32R16-M | 32 | 16 |
+| 35121 | ESP32-S31-Zero-N16R32 | 16 | 32 |
+| 36167 | ESP32-S31-Zero-N16R32-M | 16 | 32 |
+| 35763 | ESP32-S31-Zero-N32R32 | 32 | 32 |
+| 36168 | ESP32-S31-Zero-N32R32-M | 32 | 32 |
+
+## 📦 Quick Start
+
+For prebuilt examples, check [Releases](https://github.com/waveshareteam/ESP32-S31-Zero/releases) for the required `*-combined.zip`; source build instructions are in each example README.
+
+1. Download the `*-combined.zip` for the example and framework version you need.
+2. Extract it and run `python -m pip install esptool` in Ubuntu Bash or Windows PowerShell.
+3. Connect the board with a USB data cable.
+4. Replace `<PORT>` with the board port; run `.\flash_combined.bat "<PORT>"` in Windows PowerShell or `./flash_combined.sh "<PORT>"` in Ubuntu Bash.
+5. Press RESET if the board does not restart automatically.
+
+Restore the factory demo: download `ESP32-S31-Zero_FactoryOnly_20261020.bin` from [`firmware`](firmware/) and follow the [flashing instructions](firmware/README.md).
+
+## 🧪 Examples
+
+### ESP-IDF
+
+| Example | Main feature |
+| --- | --- |
+| [01_gpio_output](examples/esp-idf/01_gpio_output/) | Drive 15 GPIOs high |
+| [02_blink_rgb](examples/esp-idf/02_blink_rgb/) | Onboard RGB LED color cycle |
+| [03_chip_info](examples/esp-idf/03_chip_info/) | Chip and Flash information |
+| [04_boot_button](examples/esp-idf/04_boot_button/) | BOOT button input |
+| [05_uart_loopback](examples/esp-idf/05_uart_loopback/) | UART loopback with a jumper |
+| [06_i2c_scan](examples/esp-idf/06_i2c_scan/) | External I²C device scan |
+| [07_wifi_scan](examples/esp-idf/07_wifi_scan/) | Nearby Wi-Fi networks |
+| [08_wifi_sta](examples/esp-idf/08_wifi_sta/) | Connect to a Wi-Fi network |
+| [09_wifi_ap](examples/esp-idf/09_wifi_ap/) | Create a Wi-Fi access point |
+| [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/) | BLE advertising and connection |
+| [11_board_test](examples/esp-idf/11_board_test/) | LCD/touch/SD fixture test |
 | [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | Wi-Fi throughput console |
 
-## Getting started
+## 🛠️ Development Environment
 
-Run discovery without building (Ubuntu Bash):
+| Framework | Configured version | Examples |
+| --- | --- | ---: |
+| ESP-IDF | `v6.1` (ESP32-S31 preview target) | 12 |
 
-```bash
-python3 scripts/discover_examples.py all
-python3 scripts/validate_repo.py
-python3 -m unittest discover -s tests -v
-```
+Example [11](examples/esp-idf/11_board_test/) requires ESP-IDF ≥6.2.0, and [12](examples/esp-idf/12_wifi_performance/) uses 6.2 development APIs; compatibility with the version above is not established for these two examples. Read their requirements before building.
 
-Windows PowerShell:
+## 📚 Resources
 
-```powershell
-py -3 scripts/discover_examples.py all
-py -3 scripts/validate_repo.py
-py -3 -m unittest discover -s tests -v
-```
+- [Schematic](hardware/schematic/)
+- [Footprint](hardware/footprint/)
+- [Product documentation and Wiki (Chinese)](https://docs.waveshare.net/ESP32-S31-Zero/)
 
-Use the pinned framework and [build entry](docs/examples.md). Successful source builds produce ZIPs with original binaries, a compact combined image, manifest, resolved dependencies, checksums and Bash/Windows helpers. The [standalone downloader](scripts/download_firmware.py) lists and verifies public Release firmware; it never flashes automatically. A GitHub release destination must be configured by the maintainer. The preserved [factory binary](firmware/README.md) is separate and has incomplete provenance.
+## 🤝 Support
 
-## Repository layout
+- Example or repository problem: [open an issue](https://github.com/waveshareteam/ESP32-S31-Zero/issues/new/choose).
+- Product usage, hardware or order questions: [Waveshare support](https://service.waveshare.com/).
 
-| Path | Contents |
-| --- | --- |
-| `examples/esp-idf/` | 12 first-party source projects |
-| `hardware/` | Supplied schematic and footprints |
-| `config/` | Target evidence and framework gate |
-| `docs/` | Hardware, examples, versions and validation |
-| `scripts/` | Discovery, build entry, static checks and standalone download |
-| `tests/` | Host tooling regression tests |
-| `releases/` | Packaging, aggregate validation and publication tooling |
-| `firmware/` | Preserved test image; excluded from source CI |
-| `.github/workflows/` | Static checks and guarded firmware/Release pipeline |
+## 📄 License
 
-## Validation and license
-
-[Testing and compatibility](docs/validation.md) summarizes build results and test coverage. Documentation-only changes do not trigger full firmware builds. A stable tag can publish only after the complete required matrix and package gates succeed; public versions are never replaced. See [CI](docs/ci.md).
-
-The supplied [LICENSE](LICENSE) is Apache-2.0 and is preserved. Third-party components retain their own licenses; separate licensing of supplied hardware design files and factory binaries is not inferred.
+Apache License 2.0. See [LICENSE](LICENSE).

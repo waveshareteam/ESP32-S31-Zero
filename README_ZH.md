@@ -1,78 +1,99 @@
-# Waveshare ESP32-S31-Zero
+<div align="center">
+  <h1>ESP32-S31-Zero</h1>
+  <p><strong>小型 ESP32-S31 无线开发板</strong></p>
+  <p><a href="README.md">English</a> | <strong>简体中文</strong></p>
+  <p>
+    <a href="https://github.com/waveshareteam/ESP32-S31-Zero/actions/workflows/build.yml"><img alt="Build" src="https://github.com/waveshareteam/ESP32-S31-Zero/actions/workflows/build.yml/badge.svg"></a>
+    <a href="https://github.com/waveshareteam/ESP32-S31-Zero/releases/latest"><img alt="Latest Release" src="https://img.shields.io/github/v/release/waveshareteam/ESP32-S31-Zero"></a>
+    <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/waveshareteam/ESP32-S31-Zero"></a>
+  </p>
+  <p>
+    <a href="https://docs.waveshare.net/ESP32-S31-Zero/">🌐 产品</a> &middot;
+    <a href="https://github.com/waveshareteam/ESP32-S31-Zero/releases/latest">📦 固件</a> &middot;
+    <a href="examples/esp-idf/">🧩 ESP-IDF</a> &middot;
+    <a href="hardware/">📚 资料</a>
+  </p>
+  <p><img src="docs/images/ESP32-S31-Zero.webp" alt="ESP32-S31-Zero development board" width="500"></p>
+</div>
 
-[English](README.md)
+---
 
-ESP32-S31-Zero 是基于 ESP32-S31 的小型开发板，配备 WS2812B-1010 RGB LED、BOOT/RESET 按键、USB Type-C、外置 SPI Flash、射频连接器，以及 GPIO/LCD/触摸/SD 扩展接口。
+## ✨ 概述
 
-- [硬件说明](docs/hardware.md)
-- [示例清单与构建入口](docs/examples.md)
-- [框架和依赖版本](docs/versions.md)
-- [固件下载与烧录](releases/README.md)
+ESP32-S31-Zero 是基于 ESP32-S31 的小型无线开发板，配备 USB Type-C、RGB LED、BOOT/RESET 按键及 GPIO/LCD/触摸/SD 扩展接口。仓库提供 ESP-IDF 示例、出厂固件和硬件资料。
 
-<img src="docs/images/ESP32-S31-Zero.webp" alt="Waveshare ESP32-S31-Zero" width="500">
-
-
-## 产品概览
-
-仓库提供 12 个 ESP-IDF 源码工程、测试二进制及硬件资料。RGB 使用 GPIO60，低有效按键使用 GPIO61；USB Type-C 的 USB Serial/JTAG 使用 GPIO33/34。
-
-## 框架支持
-
-**实验 CI 已覆盖全部 12 个工程：ESP-IDF `6.2.0-dev-08e0d30a74ad`，固定提交 `08e0d30a74ad0bfd5a34933142b80f45619ee410`。** 已明确授权使用该开发版及 ESP32-S31 预览目标。查到的最新 6.x 稳定版为官方 v6.1，但其中 S31 仍为预览目标；v5.5.6 没有该目标，未发现正式 v6.2 标签。版本及实验标记见[集中配置](config/frameworks.json)。2026-10-28 已在本地完整编译通过全部 12 个工程，并验证对应固件包；GitHub 运行和实机测试仍待完成，详见[测试与兼容性](docs/validation.md)。
-
-## 示例
-
-| ESP-IDF 工程 | 功能 |
+| 器件 | 规格 / 接口 |
 | --- | --- |
-| [01_gpio_output](examples/esp-idf/01_gpio_output/) | GPIO 输出高电平演示 |
-| [02_blink_rgb](examples/esp-idf/02_blink_rgb/) | 板载 RGB LED |
-| [03_chip_info](examples/esp-idf/03_chip_info/) | 芯片与物理 Flash 信息 |
-| [04_boot_button](examples/esp-idf/04_boot_button/) | 低有效 BOOT 按键 |
-| [05_uart_loopback](examples/esp-idf/05_uart_loopback/) | 外接跳线 UART 回环 |
-| [06_i2c_scan](examples/esp-idf/06_i2c_scan/) | 扩展 I²C 总线扫描 |
-| [07_wifi_scan](examples/esp-idf/07_wifi_scan/) | Wi-Fi 扫描 |
-| [08_wifi_sta](examples/esp-idf/08_wifi_sta/) | Wi-Fi STA |
-| [09_wifi_ap](examples/esp-idf/09_wifi_ap/) | Wi-Fi SoftAP |
-| [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/) | BLE 广播 |
-| [11_board_test](examples/esp-idf/11_board_test/) | 综合测试 |
-| [12_wifi_performance](examples/esp-idf/12_wifi_performance/) | Wi-Fi 吞吐控制台 |
+| 主控 | ESP32-S31，双核 RISC-V，最高 320 MHz |
+| 存储 | 16 / 32 MB Flash，16 / 32 MB PSRAM，见下表 |
+| 无线 | 2.4 GHz Wi-Fi 6、Bluetooth LE |
+| RGB LED | WS2812B-1010，GPIO60 |
+| 按键 | BOOT（GPIO61，低有效）、RESET |
+| USB | Type-C，USB Serial/JTAG（GPIO33/34） |
+| 扩展 | GPIO、RGB LCD、触摸、SD 接口 |
 
-## 使用入口
+型号存储组合如下，`-M` 为排针版；Flash 和 PSRAM 容量单位均为 MB。
 
-Ubuntu Bash，无固件编译：
+| SKU | 型号 | Flash | PSRAM |
+| --- | --- | ---: | ---: |
+| 35879 | ESP32-S31-Zero-N16R16 | 16 | 16 |
+| 36165 | ESP32-S31-Zero-N16R16-M | 16 | 16 |
+| 35880 | ESP32-S31-Zero-N32R16 | 32 | 16 |
+| 36166 | ESP32-S31-Zero-N32R16-M | 32 | 16 |
+| 35121 | ESP32-S31-Zero-N16R32 | 16 | 32 |
+| 36167 | ESP32-S31-Zero-N16R32-M | 16 | 32 |
+| 35763 | ESP32-S31-Zero-N32R32 | 32 | 32 |
+| 36168 | ESP32-S31-Zero-N32R32-M | 32 | 32 |
 
-```bash
-python3 scripts/discover_examples.py all
-python3 scripts/validate_repo.py
-python3 -m unittest discover -s tests -v
-```
+## 📦 快速开始
 
-Windows PowerShell：
+使用现成固件时，先查看 [Releases](https://github.com/waveshareteam/ESP32-S31-Zero/releases) 是否已有所需示例的 `*-combined.zip`；源码运行方法见各示例说明。
 
-```powershell
-py -3 scripts/discover_examples.py all
-py -3 scripts/validate_repo.py
-py -3 -m unittest discover -s tests -v
-```
+1. 下载对应示例和框架版本的 `*-combined.zip`。
+2. 解压，在 Ubuntu Bash 或 Windows PowerShell 运行 `python -m pip install esptool`。
+3. 用支持数据传输的 USB 线连接开发板。
+4. 将 `<PORT>` 替换为开发板端口，在 Windows PowerShell 运行 `.\flash_combined.bat "<PORT>"`，或在 Ubuntu Bash 运行 `./flash_combined.sh "<PORT>"`。
+5. 若未自动运行，按 RESET 复位。
 
-使用[构建入口](docs/examples.md)及已批准的固定框架版本。成功构建会生成包含原始分段、紧凑合并镜像、清单、实际依赖锁、校验和及 Linux/Windows 烧录助手的 ZIP。[独立下载脚本](scripts/download_firmware.py) 可列出、选择、校验并安全解压公开 Release 固件，不自动烧录；实际 GitHub 发布仓库由维护者配置。已有[工厂测试镜像](firmware/README.md)单独保留，来源和烧录元数据尚不完整。
+恢复出厂演示：下载 [`firmware`](firmware/) 中的 `ESP32-S31-Zero_FactoryOnly_20261020.bin`，按[烧录说明](firmware/README_ZH.md)操作。
 
-## 目录结构
+## 🧪 示例
 
-| 路径 | 内容 |
+### ESP-IDF
+
+| 示例 | 主要功能 |
 | --- | --- |
-| `examples/esp-idf/` | 12 个第一方源码工程 |
-| `hardware/` | 原理图及封装文件 |
-| `config/` | 硬件记录、框架版本及支持门槛 |
-| `docs/` | 硬件、示例、依赖、CI 和验证说明 |
-| `scripts/` | 发现器、构建入口、检查和独立下载工具 |
-| `tests/` | 主机端工具回归测试 |
-| `releases/` | 打包、完整集合校验和发布工具 |
-| `firmware/` | 原有测试二进制，不进入源码构建矩阵 |
-| `.github/workflows/` | 静态检查及带门槛的固件/发布流水线 |
+| [01_gpio_output](examples/esp-idf/01_gpio_output/README_ZH.md) | 15 路 GPIO 输出高电平 |
+| [02_blink_rgb](examples/esp-idf/02_blink_rgb/README_ZH.md) | 板载 RGB LED 颜色循环 |
+| [03_chip_info](examples/esp-idf/03_chip_info/README_ZH.md) | 芯片与 Flash 信息 |
+| [04_boot_button](examples/esp-idf/04_boot_button/README_ZH.md) | BOOT 按键输入 |
+| [05_uart_loopback](examples/esp-idf/05_uart_loopback/README_ZH.md) | 外接跳线 UART 回环 |
+| [06_i2c_scan](examples/esp-idf/06_i2c_scan/README_ZH.md) | 外接 I²C 设备扫描 |
+| [07_wifi_scan](examples/esp-idf/07_wifi_scan/README_ZH.md) | 扫描附近 Wi-Fi 网络 |
+| [08_wifi_sta](examples/esp-idf/08_wifi_sta/README_ZH.md) | 连接 Wi-Fi 网络 |
+| [09_wifi_ap](examples/esp-idf/09_wifi_ap/README_ZH.md) | 创建 Wi-Fi 热点 |
+| [10_ble_advertiser](examples/esp-idf/10_ble_advertiser/README_ZH.md) | BLE 广播与连接 |
+| [11_board_test](examples/esp-idf/11_board_test/README_ZH.md) | LCD/触摸/SD 扩展测试 |
+| [12_wifi_performance](examples/esp-idf/12_wifi_performance/README_ZH.md) | Wi-Fi 吞吐测试控制台 |
 
-## 验证与许可
+## 🛠️ 开发环境
 
-[测试与兼容性](docs/validation.md)汇总构建结果及测试覆盖范围。仅文档修改不触发完整固件构建。正式版本标签必须等待全部构建和包验证成功才可发布；不会覆盖公开版本，详见 [CI 说明](docs/ci.md)。
+| 框架 | 配置版本 | 示例数 |
+| --- | --- | ---: |
+| ESP-IDF | `v6.1`（ESP32-S31 预览目标） | 12 |
 
-保留原有 Apache-2.0 [LICENSE](LICENSE)。第三方组件遵守其各自许可；不据此推定硬件设计文件和工厂二进制的独立授权范围。
+示例 [11](examples/esp-idf/11_board_test/README_ZH.md) 要求 ESP-IDF ≥6.2.0，[12](examples/esp-idf/12_wifi_performance/README_ZH.md) 使用 6.2 开发版接口；这两个示例不能按上表版本视为已兼容，运行前请阅读各自要求。
+
+## 📚 资料
+
+- [原理图](hardware/schematic/)
+- [封装文件](hardware/footprint/)
+- [产品说明与 Wiki](https://docs.waveshare.net/ESP32-S31-Zero/)
+
+## 🤝 支持
+
+- 产品使用、硬件与订单问题：[微雪技术支持](https://docs.waveshare.net/ESP32-S31-Zero/Technical-Support/)。
+
+## 📄 许可证
+
+Apache License 2.0，见 [LICENSE](LICENSE)。
