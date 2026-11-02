@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/waveshareteam/esp32-repo-template/v1/schema/product.schema.json",
+  "product": "ESP32-S31-Zero",
+  "product_url": "https://docs.waveshare.net/ESP32-S31-Zero/",
+  "tier": 0,
+  "target": "esp32s31",
+  "esp_idf": {
+    "versions": [
+      "v6.1"
+    ]
+  }
+}

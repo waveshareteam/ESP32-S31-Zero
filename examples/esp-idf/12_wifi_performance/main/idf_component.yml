@@ -1,4 +1,6 @@
 dependencies:
+  idf:
+    version: ">=6.1.0"
   cmd_system:
     path: ${IDF_PATH}/examples/system/console/advanced/components/cmd_system
   espressif/iperf-cmd:

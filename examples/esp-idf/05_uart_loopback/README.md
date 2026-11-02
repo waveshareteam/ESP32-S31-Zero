@@ -1,11 +1,27 @@
-# 05_uart_loopback
+# UART Loopback
 
-Connect H2 pin 2 (GPIO58, UART1 TX) to H2 pin 1 (GPIO59, UART1 RX).
-Disconnect other devices driving these pins before fitting the jumper.
+[English](README.md) | [简体中文](README_ZH.md)
 
-The schematic labels these pins RXD0 and TXD0 for their native UART0 functions.
-This example explicitly maps UART1 TX to GPIO58 and UART1 RX to GPIO59.
+## What It Does
 
-See [build instructions](../../../docs/examples.md), [framework status](../../../docs/versions.md) and [hardware evidence](../../../docs/hardware.md).
+Send and verify a test message once per second over UART1 at 115200 baud.
 
-Compilation and physical-board operation have not been verified in this audit.
+## Hardware Required
+
+ESP32-S31-Zero, a USB data cable, and a jumper joining GPIO58 (TX, H2 pin 2) to GPIO59 (RX, H2 pin 1).
+
+## How to Run
+
+From this example directory in an ESP-IDF-enabled Linux Bash or Windows PowerShell:
+
+```sh
+idf.py --preview set-target esp32s31 build flash monitor
+```
+
+## Expected Result
+
+The USB console prints PASS when the received data matches, or FAIL when it does not.
+
+## Troubleshooting
+
+Disconnect other devices from GPIO58/59; this example maps UART1 onto them even though the schematic labels their default UART0 functions.
