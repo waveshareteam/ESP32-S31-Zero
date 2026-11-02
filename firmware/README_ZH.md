@@ -10,12 +10,12 @@
 
 在此目录运行；将 `<PORT>` 替换为开发板端口。擦除会清空 Flash 中的所有数据。
 
-Ubuntu Bash / Windows PowerShell：
+Linux Bash / Windows PowerShell：
 
 ```sh
 python -m pip install esptool
-python -m esptool --chip esp32s31 --port <PORT> erase-flash
-python -m esptool --chip esp32s31 --port <PORT> write-flash 0x0 ESP32-S31-Zero_FactoryOnly_20261020.bin
+python -m esptool --chip esp32s31 --port "<PORT>" erase-flash
+python -m esptool --chip esp32s31 --port "<PORT>" write-flash 0x0 ESP32-S31-Zero_FactoryOnly_20261020.bin
 ```
 
 无法进入下载模式时，按住 BOOT，按一下 RESET，再松开 BOOT；烧录后按 RESET 运行。

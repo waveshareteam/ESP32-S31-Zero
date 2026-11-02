@@ -50,9 +50,9 @@ Memory options are listed below; `-M` denotes the pin-header version. Flash and 
 For prebuilt examples, check [Releases](https://github.com/waveshareteam/ESP32-S31-Zero/releases) for the required `*-combined.zip`; source build instructions are in each example README.
 
 1. Download the `*-combined.zip` for the example and framework version you need.
-2. Extract it and run `python -m pip install esptool` in Ubuntu Bash or Windows PowerShell.
+2. Extract it and run `python -m pip install esptool` in Linux Bash or Windows PowerShell.
 3. Connect the board with a USB data cable.
-4. Replace `<PORT>` with the board port; run `.\flash_combined.bat "<PORT>"` in Windows PowerShell or `./flash_combined.sh "<PORT>"` in Ubuntu Bash.
+4. Replace `<PORT>` with the board port; run `.\flash_combined.bat "<PORT>"` in Windows PowerShell or `./flash_combined.sh "<PORT>"` in Linux Bash.
 5. Press RESET if the board does not restart automatically.
 
 Restore the factory demo: download `ESP32-S31-Zero_FactoryOnly_20261020.bin` from [`firmware`](firmware/) and follow the [flashing instructions](firmware/README.md).

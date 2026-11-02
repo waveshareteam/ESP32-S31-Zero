@@ -14,7 +14,7 @@ ESP32-S31-Zero, a USB data cable, a 2.4 GHz router, and a computer running iperf
 
 This example uses ESP-IDF 6.2 development APIs and needs a matching development environment.
 
-From this example directory in an ESP-IDF-enabled Ubuntu Bash or Windows PowerShell:
+From this example directory in an ESP-IDF-enabled Linux Bash or Windows PowerShell:
 
 ```sh
 idf.py --preview set-target esp32s31 build flash monitor

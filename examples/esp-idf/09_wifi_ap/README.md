@@ -12,7 +12,7 @@ ESP32-S31-Zero, a USB data cable, and a Wi-Fi client; use an antenna connection 
 
 ## How to Run
 
-From this example directory in an ESP-IDF-enabled Ubuntu Bash or Windows PowerShell:
+From this example directory in an ESP-IDF-enabled Linux Bash or Windows PowerShell:
 
 In `Example Configuration`, set the AP name, password, channel, and client limit.
 

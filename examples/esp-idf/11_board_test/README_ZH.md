@@ -14,7 +14,7 @@ ESP32-S31-Zero、USB 数据线及与[引脚定义](main/board_peripherals.h)一�
 
 本例的依赖清单要求 ESP-IDF ≥6.2.0，不能使用仓库配置的 v6.1；应使用匹配的 6.2 开发环境。
 
-在已配置 ESP-IDF 的 Ubuntu Bash 或 Windows PowerShell 中，进入本示例目录运行：
+在已配置 ESP-IDF 的 Linux Bash 或 Windows PowerShell 中，进入本示例目录运行：
 
 ```sh
 idf.py --preview set-target esp32s31 build flash monitor

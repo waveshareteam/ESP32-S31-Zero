@@ -12,7 +12,7 @@ ESP32-S31-Zero and a USB data cable; optionally connect a 3.3 V I²C device to J
 
 ## How to Run
 
-From this example directory in an ESP-IDF-enabled Ubuntu Bash or Windows PowerShell:
+From this example directory in an ESP-IDF-enabled Linux Bash or Windows PowerShell:
 
 ```sh
 idf.py --preview set-target esp32s31 build flash monitor

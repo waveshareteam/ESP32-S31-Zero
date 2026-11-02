@@ -14,7 +14,7 @@ ESP32-S31-Zero、USB 数据线、2.4 GHz 路由器，以及运行 iperf 2.x 的�
 
 本例使用 ESP-IDF 6.2 开发版接口，需要匹配的开发环境。
 
-在已配置 ESP-IDF 的 Ubuntu Bash 或 Windows PowerShell 中，进入本示例目录运行：
+在已配置 ESP-IDF 的 Linux Bash 或 Windows PowerShell 中，进入本示例目录运行：
 
 ```sh
 idf.py --preview set-target esp32s31 build flash monitor

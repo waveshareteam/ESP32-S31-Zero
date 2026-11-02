@@ -50,9 +50,9 @@ ESP32-S31-Zero 是基于 ESP32-S31 的小型无线开发板，配备 USB Type-C�
 使用现成固件时，先查看 [Releases](https://github.com/waveshareteam/ESP32-S31-Zero/releases) 是否已有所需示例的 `*-combined.zip`；源码运行方法见各示例说明。
 
 1. 下载对应示例和框架版本的 `*-combined.zip`。
-2. 解压，在 Ubuntu Bash 或 Windows PowerShell 运行 `python -m pip install esptool`。
+2. 解压，在 Linux Bash 或 Windows PowerShell 运行 `python -m pip install esptool`。
 3. 用支持数据传输的 USB 线连接开发板。
-4. 将 `<PORT>` 替换为开发板端口，在 Windows PowerShell 运行 `.\flash_combined.bat "<PORT>"`，或在 Ubuntu Bash 运行 `./flash_combined.sh "<PORT>"`。
+4. 将 `<PORT>` 替换为开发板端口，在 Windows PowerShell 运行 `.\flash_combined.bat "<PORT>"`，或在 Linux Bash 运行 `./flash_combined.sh "<PORT>"`。
 5. 若未自动运行，按 RESET 复位。
 
 恢复出厂演示：下载 [`firmware`](firmware/) 中的 `ESP32-S31-Zero_FactoryOnly_20261020.bin`，按[烧录说明](firmware/README_ZH.md)操作。

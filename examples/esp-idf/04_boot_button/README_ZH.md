@@ -12,7 +12,7 @@ ESP32-S31-Zero 及 USB 数据线。
 
 ## 怎么运行
 
-在已配置 ESP-IDF 的 Ubuntu Bash 或 Windows PowerShell 中，进入本示例目录运行：
+在已配置 ESP-IDF 的 Linux Bash 或 Windows PowerShell 中，进入本示例目录运行：
 
 ```sh
 idf.py --preview set-target esp32s31 build flash monitor

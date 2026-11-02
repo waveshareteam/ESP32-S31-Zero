@@ -12,7 +12,7 @@ ESP32-S31-Zero、USB 数据线及 2.4 GHz 热点；天线连接应与板上的�
 
 ## 怎么运行
 
-在已配置 ESP-IDF 的 Ubuntu Bash 或 Windows PowerShell 中，进入本示例目录运行：
+在已配置 ESP-IDF 的 Linux Bash 或 Windows PowerShell 中，进入本示例目录运行：
 
 在 `Example Configuration` 中设置要连接的网络名称和密码。
 

@@ -14,7 +14,7 @@ ESP32-S31-Zero, USB data cable, and an external 800 × 480 RGB LCD / GT911 touch
 
 The dependency manifest requires ESP-IDF ≥6.2.0, which excludes the configured v6.1; use a matching 6.2 development environment.
 
-From this example directory in an ESP-IDF-enabled Ubuntu Bash or Windows PowerShell:
+From this example directory in an ESP-IDF-enabled Linux Bash or Windows PowerShell:
 
 ```sh
 idf.py --preview set-target esp32s31 build flash monitor

@@ -10,12 +10,12 @@ Merged firmware tested on the ESP32-S31-Zero board, flashed at `0x0`. Older vers
 
 Run from this directory and replace `<PORT>` with the board port. Erasing removes all data in Flash.
 
-Ubuntu Bash / Windows PowerShell:
+Linux Bash / Windows PowerShell:
 
 ```sh
 python -m pip install esptool
-python -m esptool --chip esp32s31 --port <PORT> erase-flash
-python -m esptool --chip esp32s31 --port <PORT> write-flash 0x0 ESP32-S31-Zero_FactoryOnly_20261020.bin
+python -m esptool --chip esp32s31 --port "<PORT>" erase-flash
+python -m esptool --chip esp32s31 --port "<PORT>" write-flash 0x0 ESP32-S31-Zero_FactoryOnly_20261020.bin
 ```
 
 If download mode is needed, hold BOOT, press RESET, then release BOOT; press RESET after flashing to run.
